@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# pbcut - cut a long video into named clips using a CSV, then convert them to MP4.
+# cutter - cut a long video into named clips using a CSV, then convert them to MP4.
 #
 # Layout (always relative to this script, so you can run it from anywhere):
 #   source/     put the long .mov here
@@ -9,7 +9,7 @@
 #
 # CSV columns: start,end,name   (times are SS, MM:SS or H:MM:SS)
 #
-# Run ./pbcut.sh --help for usage. See README.md for the full guide.
+# Run ./cutter.sh --help for usage. See README.md for the full guide.
 
 set -uo pipefail
 
@@ -36,9 +36,9 @@ PARSE_BAD=0
 
 usage() {
   cat <<'EOF'
-pbcut - cut a long video into clips from a CSV, then convert them to MP4
+cutter - cut a long video into clips from a CSV, then convert them to MP4
 
-Usage: ./pbcut.sh <command> [options]
+Usage: ./cutter.sh <command> [options]
 
 Commands:
   init       Create the folder layout (safe to run any time)
@@ -66,11 +66,11 @@ Options:
   -h, --help          Show this help
 
 Common flows:
-  ./pbcut.sh check                       # validate CSV first
-  ./pbcut.sh all                         # accurate cuts, then MP4s
-  ./pbcut.sh cut --fast                  # quick rough cuts
-  ./pbcut.sh cut --to mp4                # skip the .mov step entirely
-  ./pbcut.sh convert -m encode --crf 18  # redo MP4s at higher quality
+  ./cutter.sh check                       # validate CSV first
+  ./cutter.sh all                         # accurate cuts, then MP4s
+  ./cutter.sh cut --fast                  # quick rough cuts
+  ./cutter.sh cut --to mp4                # skip the .mov step entirely
+  ./cutter.sh convert -m encode --crf 18  # redo MP4s at higher quality
 EOF
 }
 
@@ -318,7 +318,7 @@ cmd_status() {
       size=$(du -shL "$d" 2>/dev/null | cut -f1)
       printf '%-10s %3s file(s)  %s\n' "$label" "$n" "$size"
     else
-      printf '%-10s missing (run ./pbcut.sh init)\n' "$label"
+      printf '%-10s missing (run ./cutter.sh init)\n' "$label"
     fi
   done
 }
