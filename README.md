@@ -39,7 +39,7 @@ chmod +x cutter.sh
 ./cutter.sh init
 
 # 3. Put your video in source/. A symlink avoids copying a huge file:
-ln -s "$HOME/Documents/project_burlesque/2026-10-18-witch - 18 October 2026 - 06-47-23 PM.mov" source/
+ln -s "/path/to/your/movfile/.mov" source/
 #    (or move/copy it:  mv "<path to file>" source/ )
 
 # 4. Put your CSV in metadata/
